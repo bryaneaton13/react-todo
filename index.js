@@ -26,8 +26,11 @@ var EditCard = React.createClass({
     },
     // create the form to edit the card
     render: function() {
+        var className = "editCard";
+        if (this.props.value !== '')
+            className += " zoomIn animated";
         return (
-            <div className="editCard">
+            <div className={className}>
                 <form
                     className="form-group"
                     onSubmit={this.handleSubmit}>
@@ -97,7 +100,7 @@ var CardListItem = React.createClass({
         return (     
             <li 
                 onClick={this.edit}
-                className="list-group-item">
+                className="list-group-item fadeInLeft animated">
                 {item}
             </li>
         );

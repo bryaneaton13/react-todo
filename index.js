@@ -2,6 +2,13 @@
 /* https://github.com/reactjs/sublime-react */
 var React = require('react');
 
+
+// Test data to create the cards with
+var cards = [
+    {value: "Card 1"},
+    {value: "Card 2"}
+];
+
 // Create the card that will be used to edit or add the item
 var EditCard = React.createClass({
     
@@ -12,6 +19,10 @@ var EditCard = React.createClass({
             this.props.id,
             this.refs.card.getDOMNode().value
         );
+    },
+    // Each time the component is created, select the text in it
+    componentDidMount: function() {
+        this.refs.card.getDOMNode().select();
     },
     // create the form to edit the card
     render: function() {
@@ -187,20 +198,18 @@ var CardsAdd = React.createClass({
                     toggleEdit={this.toggleEdit}
                     editCard={this.editCard}
                     cards={this.state.cards}/>
-                <button
-                    className="btn btn-default"
-                    type="button"
-                    onClick={this.addCard}>
-                    Add Card
-                </button>
+                <div className="listButton">
+                    <button
+                        className="btn btn-default"
+                        type="button"
+                        onClick={this.addCard}>
+                        Add Card
+                    </button>
+                </div>
             </div>
         );
     }
 });
 
-var cards = [
-    {value: "Card 1"},
-    {value: "Card 2"}
-];
 
 React.render(<CardsAdd cards={cards} />, document.body);
